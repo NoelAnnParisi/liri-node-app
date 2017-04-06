@@ -4,6 +4,7 @@
   "description": "",
   "main": "liri.js",
   "dependencies": {
+    "fs": "0.0.1-security",
     "omdb-client": "^1.0.6",
     "spotify": "^0.3.0",
     "twitter": "^1.7.0"
