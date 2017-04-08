@@ -5,16 +5,17 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const keys = require('./keys.js');
 const twitterAccess = keys.twitterKeys;
-const input = process.argv[2];
-
+//use inquirer to obtain command from user
+//all responses will be recorded to log.txt file 
 inquirer.prompt([{
     type: 'list',
     name: 'userCommand',
     message: "What do you want Liri to do?",
     choices: ['my_tweets', 'spotify-this-song', 'movie-this', 'do-what-it-says']
 }]).then(answer => {
-    console.log(answer.userCommand);
+    //depending on what they choose liri will do something!
     switch (answer.userCommand) {
+        //retrieve 20 most recent tweets
         case "my_tweets":
             var params = { screen_name: 'noelannparisi' };
             twitterAccess.get('statuses/user_timeline', 'count:20', function(error, tweets, response) {
@@ -30,15 +31,17 @@ inquirer.prompt([{
                 }
             });
             break;
-
+            //search for a song!
         case "spotify-this-song":
-            // https://api.spotify.com/v1/search?query=I+want+it+that+way&type=track&offset=0&limit=20
+            //https://api.spotify.com/v1/search?query=I+want+it+that+way&type=track&offset=0&limit=20
             inquirer.prompt([{
                 type: 'input',
+                //if they don't type in anything this song's info will display
                 default: 'The Sign, Ace of Base',
                 name: 'song',
                 message: "What song do you want to look up?"
             }]).then(answer => {
+                //retreive their query and search for it using spotify's API
                 const songName = answer.song;
                 spotify.search({ type: 'track', query: "'" + answer.song + "'" }, function(err, data) {
                     if (!err) {
@@ -56,14 +59,16 @@ inquirer.prompt([{
             })
 
             break;
-
+            //retreive movie information of a particular movie
         case "movie-this":
             inquirer.prompt([{
                 type: 'input',
+                //if they don't type in anything this movie's info will display
                 default: 'Mr. Nobody',
                 name: 'movieTitle',
                 message: "What movie do you want to look up?"
             }]).then(answer => {
+                //retreive their query and search for movie's stats using ombdApi
                 const params = {
                     title: answer.movieTitle,
                     incTomatoes: true
@@ -92,7 +97,7 @@ inquirer.prompt([{
                 });
             });
             break;
-
+            //this will do what is says on the random.txt file (purpose: practice reading from files)
         case "do-what-it-says":
             fs.readFile('/Users/NoelParisi/Desktop/liri/liri-node-app/random.txt', "utf8", function(err, data) {
                 var dataArr = data.split(',');
