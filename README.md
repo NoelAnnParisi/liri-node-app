@@ -12,9 +12,9 @@ This Node.js backend application uses Twitter, Spotify and OMBD API to query for
 * Twitter
 
 <p align='center'>
-  <img src ="/readme1.png?raw=true" alt="ScreenShot of my site">
-</p>
-
-<p align='center'>
   <img src ="/readme2.png?raw=true" alt="ScreenShot of my site">
+</p>
+<br>
+<p align='center'>
+  <img src ="/readme1.png?raw=true" alt="ScreenShot of my site">
 </p>
