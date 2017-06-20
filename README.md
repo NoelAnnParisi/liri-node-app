@@ -1,1 +1,2 @@
 # liri-node-app
+This Node.js backend application uses Twitter, Spotify and OMBD API to query for recent tweets, songs, and movies (respectively). I've use to check in on my tweets, search for details of a certain song, and check to see if a certain movie is worth watching! 
